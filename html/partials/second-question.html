@@ -1,0 +1,25 @@
+<div class="app-interactive-section app-second-question">
+
+    @@include('./html/partials/question-item.html', {
+        "question_text" : "What do you prefer?"
+    })
+
+
+    <div class="app-cloud-wrapper">
+        
+            @@include('./html/partials/radiobuttons.html', {
+                "id_first_input"  : "makeup-eye",
+                "label_first"     : "Strong eye",
+        
+                "id_second_input" : "makeup-lips",
+                "label_second"    : "Strong lips",
+                
+                "id_third_input"  : "makeup-both",
+                "label_third"     : "Both",
+        
+                "group_name"      : "makeup-choice"
+            })
+
+    </div>
+
+</div>

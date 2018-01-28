@@ -1,0 +1,39 @@
+.app-interactive-section {
+    height: 380px;
+    position: relative;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+
+    &.app-start {
+        background-image: url('../../img/cover.png');
+    }
+
+    &.app-first-question {
+        background-image: url('../../img/1.png');
+    }
+
+    &.app-second-question {
+        background-image: url('../../img/2.png');
+    }
+
+    &.app-third-question {
+        background-image: url('../../img/3.png');
+    }
+
+    &.app-fourth-question {
+        background-image: url('../../img/4.png');
+    }
+
+    &.app-product-first {
+        background-image: url('../../img/r1.png');
+    }
+
+    &.app-product-second {
+        background-image: url('../../img/r2.png');
+    }
+
+    &.app-product-third {
+        background-image: url('../../img/r3.png');
+    }
+}

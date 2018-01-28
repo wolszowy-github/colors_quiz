@@ -1,0 +1,58 @@
+.app-slider-wrapper {
+    position: relative;
+
+    .app-prev, .app-next {
+        position: absolute;
+        bottom: 50px;
+        padding: 50px 20px;
+        
+        .app-slider-button {
+            position: relative;
+
+            &:before, &:after {
+                position: absolute;
+                content:'';
+                width: 3px;
+                height: 30px;       
+                background-color: #000;
+            }
+        }
+    }
+
+    .app-prev {
+
+        .app-slider-button {
+ 
+            &:after {
+                top: -25px;
+                left: 0;
+                transform: rotate(45deg);
+            }
+
+            &:before {
+                top: -5px;
+                left: 0;
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    .app-next {
+        right: 0;
+
+        .app-slider-button {
+
+            &:after {
+                top: -25px;
+                left: 0;
+                transform: rotate(-45deg);
+            }
+            
+            &:before {
+                top: -5px;
+                left: 0;
+                transform: rotate(45deg);
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+<div class="app-interactive-section app-third-question">
+
+    @@include('./html/partials/question-item.html', {
+        "question_text" : "What is your skin tone?"
+    })
+
+
+    <div class="app-cloud-wrapper">
+        
+            @@include('./html/partials/radiobuttons.html', {
+                "id_first_input"  : "skin-pale-white",
+                "label_first"     : "Pale white",
+        
+                "id_second_input" : "skin-medium",
+                "label_second"    : "Medium",
+                
+                "id_third_input"  : "skin-olive",
+                "label_third"     : "Olive",
+        
+                "group_name"      : "skin-choice"
+            })
+
+    </div>
+
+</div>
+
+

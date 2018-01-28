@@ -1,0 +1,27 @@
+<div class="app-interactive-section app-fourth-question">
+
+    @@include('./html/partials/question-item.html', {
+        "question_text" : "The best music is...?"
+    })
+
+
+    <div class="app-cloud-wrapper">
+        
+            @@include('./html/partials/radiobuttons.html', {
+                "id_first_input"  : "music-rock",
+                "label_first"     : "Rock",
+        
+                "id_second_input" : "music-pop",
+                "label_second"    : "Pop",
+                
+                "id_third_input"  : "music-techno",
+                "label_third"     : "Techno",
+        
+                "group_name"      : "music-choice"
+            })
+
+    </div>
+
+</div>
+
+

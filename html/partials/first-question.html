@@ -1,0 +1,25 @@
+<div class="app-interactive-section app-first-question">
+
+    @@include('./html/partials/question-item.html', {
+        "question_text" : "Are you...?"
+    })
+
+
+    <div class="app-cloud-wrapper">
+        
+            @@include('./html/partials/radiobuttons.html', {
+                "id_first_input"  : "hair-option-blond",
+                "label_first"     : "Blond",
+        
+                "id_second_input" : "hair-option-brunette",
+                "label_second"    : "Brunette",
+                
+                "id_third_input"  : "hair-option-ginger",
+                "label_third"     : "Ginger",
+        
+                "group_name"      : "hair-choice"
+            })
+
+    </div>
+
+</div>

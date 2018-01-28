@@ -1,0 +1,53 @@
+.app-radiobuttons {
+    max-width: 220px;
+    margin: 0 auto;
+
+    fieldset {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 35px;
+    }
+
+    input[type="radio"] {
+        position: absolute;
+        left: -9999px;
+
+        &:focus + label {
+            outline: 1px solid #4D90FE;
+        }       
+    
+        & + label {
+            position: relative;
+            display: block;
+            text-align: center;
+            cursor: pointer;
+            
+            &:before, &:after {
+                position: absolute;
+                content: '';
+                left: 0;
+                top: 0;
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                border: 1px solid #000;
+            }
+    
+            &:after {
+                border: 1px solid #000;
+                background-color: #000;
+                transform: scale(0);
+                transition: transform .3s;
+            }
+        }
+    
+        &:checked + label {
+    
+            &:after {
+                transform: scale(0.5);
+            }
+        }
+    }
+}
+
