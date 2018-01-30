@@ -11,11 +11,6 @@ class Quiz  {
             arrowPrevious : $('[data-slider-control="left"]'),
             startButton: $('[data-start-button]'),
             resultsButton: $('[data-results]'),
-            hairChoiceButtons: $('input[name="hair-choice"]'),
-            makeupChoiceButtons: $('input[name="makeup-choice"]'),
-            skinChoiceButtons: $('input[name="skin-choice"]'),
-            musicChoiceButtons: $('input[name="music-choice"]'),
-            hairChoiceValue: 0,
             makeupChoiceValue: 0,
             skinChoiceValue: 0,
             musicChoiceValue: 0,
@@ -23,72 +18,45 @@ class Quiz  {
         }
     }
 
-    hairChoice() {
+    countAnswerPoints(inputsName, answerValue) {
         const that = this;
-        this.el.hairChoiceButtons.on('click', function() {
-
-            that.el.hairChoiceValue = that.el.hairChoiceButtons.index($(this)) + 1;
+        $(`input[name=${inputsName}]`).on('click', function() {
+            that.el[answerValue] = $(`input[name=${inputsName}]`).index($(this)) + 1;
             that.sumPoints();
-            console.log(that.el.hairChoiceValue)
-            console.log(that.el.testResult)
+            console.log(that.el[answerValue]);
+            console.log(that.el.testResult);
+            that.unlockResult(that);
         })
-
     }
-
-    makeupChoice() {
-        const that = this;
-        this.el.makeupChoiceButtons.on('click', function () {
-
-            that.el.makeupChoiceValue = that.el.makeupChoiceButtons.index($(this)) + 1;
-            that.sumPoints();
-            console.log(that.el.makeupChoiceValue)
-            console.log(that.el.testResult)
-        })
-
-    }
-
-    skinChoice() {
-        const that = this;
-        this.el.skinChoiceButtons.on('click', function () {
-
-            that.el.skinChoiceValue = that.el.skinChoiceButtons.index($(this)) + 1;
-            that.sumPoints();
-            console.log(that.el.skinChoiceValue)
-            console.log(that.el.testResult)
-        })
-
-    }
-
-
-    musicChoice() {
-        const that = this;
-        this.el.musicChoiceButtons.on('click', function () {
-
-            that.el.musicChoiceValue = that.el.musicChoiceButtons.index($(this)) + 1;
-            that.sumPoints();
-            console.log(that.el.musicChoiceValue)
-            console.log(that.el.testResult)
-
-            //last question before the result
-            if ($('.slick-active').attr('data-slick-index') == 4 && (that.el.skinChoiceValue && that.el.makeupChoiceValue
-                && that.el.hairChoiceValue && that.el.musicChoiceValue)) {
-
-                that.el.arrowNext.fadeIn();
-            }
-        })
-
+    
+    unlockResult(that) {
+        
+        if ($('.slick-active').attr('data-slick-index') == 4 &&
+    
+            (that.el.skinChoiceValue && that.el.makeupChoiceValue && that.el.hairChoiceValue && that.el.musicChoiceValue)) {
+    
+            that.el.arrowNext.fadeIn();
+        }
     }
 
     sumPoints() {
         this.el.testResult = this.el.musicChoiceValue + this.el.skinChoiceValue
         + this.el.makeupChoiceValue + this.el.hairChoiceValue;
     }
+    
+    userChoice() {
+
+        this.countAnswerPoints('hair-choice', 'hairChoiceValue');
+        this.countAnswerPoints('makeup-choice', 'makeupChoiceValue');
+        this.countAnswerPoints('skin-choice', 'skinChoiceValue');
+        this.countAnswerPoints('music-choice', 'musicChoiceValue');
+
+    }
 
 
     hideArrows() {
 
         this.el.arrows.hide()
-
     }
 
     startQuiz() {
@@ -97,7 +65,8 @@ class Quiz  {
             e.preventDefault();
             this.el.slickSliderWrapper.slick('slickGoTo', 1);
             this.el.arrowNext.fadeIn();
-            
+            $('.slick-active').find('.app-cloud-wrapper').removeClass('app-slide-out');
+            $('.slick-active').find('.app-cloud-wrapper').addClass('app-slide-in');
         })
     }
 
@@ -125,10 +94,10 @@ class Quiz  {
            this.el.makeupChoiceValue = 0;
 
            //deselect inputs
-            this.el.hairChoiceButtons.prop('checked', false);
-            this.el.musicChoiceButtons.prop('checked', false);
-            this.el.makeupChoiceButtons.prop('checked', false);
-            this.el.skinChoiceButtons.prop('checked', false);
+            $('input[name="hair-choice"]').prop('checked', false);
+            $('input[name="makeup-choice"]').prop('checked', false);
+            $('input[name="music-choice"]').prop('checked', false);
+            $('input[name="skin-choice"]').prop('checked', false);
             
             
            this.el.slickSliderWrapper.slick('slickGoTo', 0);          
@@ -147,6 +116,8 @@ class Quiz  {
             let activeSlide = $('.slick-active').attr('data-slick-index');
 
             e.preventDefault();
+ 
+
             if (activeSlide > 0 && activeSlide < 5) {
                 this.el.arrows.fadeIn();
 
@@ -161,6 +132,7 @@ class Quiz  {
             }
 
             if (activeSlide == 5) {
+
                 $('.app-quiz-wrapper').hide();
 
                 if (this.el.testResult <= 5){
@@ -170,6 +142,7 @@ class Quiz  {
                     $('.app-results-second').fadeIn();
 
                 } else {
+
                     const firstTwoQuestSum = this.el.hairChoiceValue + this.el.makeupChoiceValue;
 
                     if (firstTwoQuestSum > 1 && firstTwoQuestSum < 4) {
@@ -198,6 +171,28 @@ class Quiz  {
         });
     }
 
+    addCloudAnimation() {
+
+        this.el.arrows.on('click', function() {
+
+            
+            $('.slick-slide').each(function(index, el){
+                
+                const cloud = $(this).find('.app-cloud-wrapper');
+                if (cloud && $(el).hasClass('slick-active')){
+                    cloud.addClass('app-slide-in');
+                    cloud.removeClass('app-slide-out');
+                   
+                } else {
+                   cloud.removeClass('app-slide-in');
+                   cloud.addClass('app-slide-out');
+                }
+        })
+      
+            
+        })
+    }
+
     init() {
 
         this.slickSlider();
@@ -206,10 +201,8 @@ class Quiz  {
         this.sliderProgress();
         this.showAllResults();
         this.repeatQuiz();
-        this.hairChoice();
-        this.makeupChoice();
-        this.skinChoice();
-        this.musicChoice();
+        this.userChoice();
+        this.addCloudAnimation();
      }
 }
 
