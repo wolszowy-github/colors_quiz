@@ -166,6 +166,7 @@ class Quiz  {
             swipe: false,
             slidesToShow: 1,
             slidesToScroll: 1,
+            accessibility: false,
             prevArrow: this.el.arrowPrevious,
             nextArrow: this.el.arrowNext
         });
