@@ -23,8 +23,6 @@ class Quiz  {
         $(`input[name=${inputsName}]`).on('click', function() {
             that.el[answerValue] = $(`input[name=${inputsName}]`).index($(this)) + 1;
             that.sumPoints();
-            console.log(that.el[answerValue]);
-            console.log(that.el.testResult);
             that.unlockResult(that);
         })
     }

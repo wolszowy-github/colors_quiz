@@ -13,9 +13,9 @@
         position: absolute;
         left: -9999px;
 
-        &:focus + label {
-            outline: 1px solid #4D90FE;
-        }       
+        // &:focus + label {
+        //     outline: 1px solid #4D90FE;
+        // }       
     
         & + label {
             position: relative;
